@@ -116,26 +116,26 @@ const enhanced3 = temps => {
   }
 };
 
-const bigTemps = require("./10k-winter-summer.json");
+const bigTemps = require("./10k-low-high.json");
 describe.each([
   ["baseline", baseline],
   ["enahced", enhanced],
   ["enhanced2", enhanced2],
   ["enhanced25", enhanced25],
   ["sortedSummer", enhanced3]
-])("%s", (name, winterSummer) => {
+])("%s", (name, lowHigh) => {
   test.each([
     // temps, expected
     [[-1, 1], 1],
     [[1, 2, 3, 4, 5, 6], 1],
     [[6, 5, 4, 3, 2, 1, 7], 6]
   ])("Temps: %p expected: %i", (temps, expected) => {
-    const actual = winterSummer(temps);
+    const actual = lowHigh(temps);
     expect(actual).toBe(expected);
   });
 
   test("10k array", () => {
-    const actual = winterSummer(bigTemps);
+    const actual = lowHigh(bigTemps);
     expect(actual).toBe(5000);
   });
 });
