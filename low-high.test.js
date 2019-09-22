@@ -202,7 +202,16 @@ describe.each([
     [[-2, 2, 3, -1, -1, -1], 1],
     [[-1, -2, -1, -2, 0, 0, 0, 3], 4],
     [[-1, -2, -1, -2, 0, 0, 0, 3, -1, 5], 9],
-    [[0, 0, 0, -4, 0, 0, 1], 6]
+    [[0, 0, 0, -4, 0, 0, 1], 6],
+    [[-1000000, 1000000], 1],
+    [[-1000000, -999999], 1],
+    [[999999, 1000000], 1],
+    [[1, 1, 1, 1, 2], 4],
+    [[1, 2, 2, 2, 2], 1],
+    [
+      [1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1, 1, 4, 4, 4, 4],
+      20
+    ]
   ])("Temps: %p expected: %i", (temps, expected) => {
     const actual = lowHigh(temps);
     expect(actual).toBe(expected);
@@ -422,8 +431,8 @@ describe.each([
     expect(actual).toBe(98);
   });
 
-  // test("10k array", () => {
-  //   const actual = lowHigh(bigTemps);
-  //   expect(actual).toBe(5000);
-  // });
+  test("10k array", () => {
+    const actual = lowHigh(bigTemps);
+    expect(actual).toBe(5000);
+  });
 });
